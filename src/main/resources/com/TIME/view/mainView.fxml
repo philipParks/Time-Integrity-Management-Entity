@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TIME.controller.MainViewController">
+    <VBox prefHeight="600.0" prefWidth="1300.0">
+        <HBox prefHeight="550.0" prefWidth="1200.0">
+            <VBox prefHeight="200.0" prefWidth="1020.0">
+                <TabPane prefHeight="550.0" prefWidth="350.0" tabClosingPolicy="UNAVAILABLE">
+                    <Tab fx:id="appointmentsTab" onSelectionChanged="#appointmentsTabSelected" text="Appointments">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="468.0" prefWidth="550.0">
+                            <VBox prefHeight="518.0" prefWidth="1020.0">
+                                <TableView fx:id="appointmentTable" prefHeight="475.0" prefWidth="750.0">
+                                    <columns>
+                                        <TableColumn fx:id="apptIdCol" minWidth="101.0" prefWidth="75.0" text="Appointment ID" />
+                                        <TableColumn fx:id="apptTitleCol" minWidth="101.0" prefWidth="75.0" text="Title" />
+                                        <TableColumn fx:id="apptDesCol" minWidth="112.0" prefWidth="75.0" text="Description" />
+                                        <TableColumn fx:id="apptLocCol" minWidth="101.0" prefWidth="75.0" text="Location" />
+                                        <TableColumn fx:id="apptContactCol" minWidth="101.0" prefWidth="75.0" text="Contact" />
+                                        <TableColumn fx:id="apptTypeCol" minWidth="101.0" prefWidth="75.0" text="Type" />
+                                        <TableColumn fx:id="apptStartCol" minWidth="125.0" prefWidth="75.0" text="Start" />
+                                        <TableColumn fx:id="apptEndCol" minWidth="125.0" prefWidth="75.0" text="End" />
+                                        <TableColumn fx:id="apptCustomerCol" minWidth="76.0" prefWidth="75.0" text="Customer ID" />
+                                        <TableColumn fx:id="apptUserCol" minWidth="75.0" prefWidth="75.0" text="User ID" />
+                                    </columns>
+                                </TableView>
+                                <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0" spacing="77.0">
+                                    <padding>
+                                        <Insets right="20.0" />
+                                    </padding>
+                           <RadioButton layoutX="475.0" layoutY="25.0" mnemonicParsing="false" onAction="#weekSelected" text="Week View">
+                              <toggleGroup>
+                                 <ToggleGroup fx:id="appointmentViews" />
+                              </toggleGroup>
+                           </RadioButton>
+                           <RadioButton mnemonicParsing="false" onAction="#monthSelected" text="Month View" toggleGroup="$appointmentViews" />
+                           <RadioButton mnemonicParsing="false" onAction="#allSelected" selected="true" text="All Appointments" toggleGroup="$appointmentViews" />
+                                    <Button mnemonicParsing="false" onAction="#appointmentDetailsButtonClicked" text="View Appointment Details" />
+                                </HBox>
+                            </VBox>
+                        </AnchorPane>
+                    </Tab>
+                    <Tab fx:id="reportsTab" onSelectionChanged="#ReportsTabSelected" text="Reports">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <VBox prefHeight="518.0" prefWidth="1020.0">
+                                <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="15.0">
+                           <Label text="Report 1:" />
+                                    <Label text="Appointment Type" />
+                                    <ComboBox fx:id="appointmentTypeCb" prefWidth="150.0" promptText="Select a Type" />
+                                    <Label text="Month" />
+                                    <ComboBox fx:id="monthCb" prefWidth="150.0" promptText="select a Month" />
+                                    <Button mnemonicParsing="false" onAction="#totalButtonClicked" text="Total:" />
+                                    <Label fx:id="TypeAndMonthTotalAppointments" text="Label">
+                                        <font>
+                                            <Font name="System Bold" size="13.0" />
+                                        </font>
+                                    </Label>
+                                </HBox>
+                        <HBox prefHeight="20.0" prefWidth="200.0" />
+                                <TableView fx:id="reportsTable" prefHeight="326.0" prefWidth="980.0">
+                                    <columns>
+                                        <TableColumn fx:id="scheduleIdCol" minWidth="129.0" prefWidth="107.0" text="Appointment ID" />
+                                        <TableColumn fx:id="scheduleTitleCol" minWidth="129.0" prefWidth="107.0" text="Title" />
+                                        <TableColumn fx:id="scheduleTypeCol" minWidth="129.0" prefWidth="107.0" text="Type" />
+                                        <TableColumn fx:id="scheduleDesCol" minWidth="129.0" prefWidth="107.0" text="Description" />
+                                        <TableColumn fx:id="scheduleStartCol" minWidth="129.0" prefWidth="107.0" text="Start" />
+                                        <TableColumn fx:id="scheduleEndCol" minWidth="129.0" prefWidth="107.0" text="End" />
+                                        <TableColumn fx:id="scheduleCustomerCol" minWidth="129.0" prefWidth="107.0" text="Customer ID" />
+                                    </columns>
+                                </TableView>
+                                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="336.0" prefHeight="50.0" prefWidth="200.0" spacing="15.0">
+                           <Label text="Report 2:" />
+                                    <Label text="Select a Contact to view their schedule in the table above:" />
+                                    <Label text="Contact" />
+                                    <ComboBox fx:id="contactsForScheduleCb" onAction="#populateReportTable" prefWidth="150.0" promptText="Select a Contact" />
+                                </HBox>
+                        <HBox layoutX="30.0" layoutY="60.0" prefHeight="20.0" prefWidth="200.0" />
+                                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="336.0" prefHeight="50.0" prefWidth="200.0" spacing="15.0">
+                           <Label text="Report 3:" />
+                                    <Label text="Appointment Location" />
+                           <ComboBox fx:id="locationCb" onAction="#locationSelected" prefWidth="150.0" promptText="Select a Location" />
+                                    <Label fx:id="locationAppointmentTotal" text="Label">
+                                        <font>
+                                            <Font name="System Bold" size="13.0" />
+                                        </font>
+                                    </Label>
+                                </HBox>
+                        <padding>
+                           <Insets left="20.0" right="95.0" />
+                        </padding>
+                            </VBox>
+                        </AnchorPane>
+                    </Tab>
+                    <Tab fx:id="customersTab" onSelectionChanged="#customerTabSelected" text="Customers">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <VBox prefHeight="518.0" prefWidth="1020.0">
+                                <TableView fx:id="customerTable" prefHeight="475.0" prefWidth="750.0">
+                                    <columns>
+                                        <TableColumn fx:id="customerIdCol" minWidth="150.0" prefWidth="107.0" text="ID" />
+                                        <TableColumn fx:id="customerNameCol" minWidth="150.0" prefWidth="107.0" text="Name" />
+                                        <TableColumn fx:id="streetAddressCol" minWidth="150.0" prefWidth="107.0" text="Street" />
+                                        <TableColumn fx:id="stateProvinceCol" minWidth="150.0" prefWidth="107.0" text="State/Province" />
+                                        <TableColumn fx:id="postalCodeCol" minWidth="150.0" prefWidth="107.0" text="Postal Code" />
+                                        <TableColumn fx:id="phoneCol" minWidth="150.0" prefWidth="107.0" text="Phone" />
+                                    </columns>
+                                </TableView>
+                                <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0">
+                                    <padding>
+                                        <Insets right="20.0" />
+                                    </padding>
+                                    <Button mnemonicParsing="false" onAction="#CustomerDetailsButtonClicked" text="View Customer Details" />
+                                </HBox>
+                        <padding>
+                           <Insets left="40.0" right="78.0" top="2.0" />
+                        </padding>
+                            </VBox>
+                        </AnchorPane>
+                    </Tab>
+                </TabPane>
+            </VBox>
+            <SplitPane dividerPositions="0.06295620437956205" orientation="VERTICAL" prefHeight="200.0" prefWidth="280.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                    <Label fx:id="quickViewLabel" layoutX="92.0" layoutY="10.0" text="Next Appointment" />
+                    <Label fx:id="greetingLabel" layoutX="14.0" layoutY="9.0" text="Quick View:">
+                        <font>
+                            <Font name="System Bold" size="14.0" />
+                        </font>
+                    </Label>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                    <VBox prefHeight="510.0" prefWidth="250.0">
+                        <VBox prefHeight="460.0" prefWidth="249.0" spacing="32.0">
+                            <padding>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </padding>
+                            <Label fx:id="titleNameLabel" text="Title" />
+                            <Label fx:id="descAddLabel" layoutX="10.0" layoutY="27.0" text="Description" />
+                            <Label fx:id="locationStateLabel" layoutX="10.0" layoutY="44.0" text="Location" />
+                            <Label fx:id="contactPostalLabel" layoutX="10.0" layoutY="61.0" text="Contact" />
+                            <Label fx:id="typePhoneLabel" layoutX="10.0" layoutY="78.0" text="Type" />
+                            <HBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="373.0" prefHeight="50.0" prefWidth="200.0" spacing="20.0">
+                                <Label fx:id="dateLabel" text="Date" />
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                                <padding>
+                                    <Insets right="20.0" />
+                                </padding>
+                                <Label fx:id="startLabel" text="Start" />
+                                <Label fx:id="toLabel" text="to" />
+                                <Label fx:id="endLabel" text="End" />
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="422.0" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                                <Label fx:id="customerLabel" text="Customer" />
+                            </HBox>
+                        </VBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0" spacing="20.0">
+                            <padding>
+                                <Insets right="20.0" />
+                            </padding>
+                            <Button fx:id="modifyButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#modifyButtonClicked" text="Modify" />
+                            <Button fx:id="deleteButton" layoutX="64.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteButtonClicked" text="Delete" />
+                        </HBox>
+                    </VBox>
+                </AnchorPane>
+            </SplitPane>
+        </HBox>
+        <HBox layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="1300.0">
+            <padding>
+                <Insets left="20.0" />
+            </padding>
+            <Label fx:id="warnLabel" prefHeight="100.0" prefWidth="549.0" text="System Messages">
+                <font>
+                    <Font name="System Bold" />
+                </font>
+            </Label>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="747.0" spacing="20.0">
+                <padding>
+                    <Insets right="20.0" />
+                </padding>
+            <Button fx:id="addCustomerButton" layoutX="241.0" layoutY="22.0" mnemonicParsing="false" onAction="#addCustomerButtonClicked" text="Add a Customer" />
+                <Button fx:id="appointmentButton" mnemonicParsing="false" onAction="#appointmentButtonClicked" text="Schedule an Appointment" />
+                <Button mnemonicParsing="false" onAction="#logOutButtonClicked" text="Log-out" />
+            </HBox>
+        </HBox>
+    </VBox>
+</AnchorPane>

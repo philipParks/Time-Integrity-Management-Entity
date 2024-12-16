@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TIME.controller.AppointmentViewController">
+    <VBox prefHeight="500.0" prefWidth="600.0">
+        <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" />
+        </padding>
+        <Label prefHeight="50.0" prefWidth="200.0" text="Appointment">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+        <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="200.0" spacing="25.0">
+            <padding>
+                <Insets left="25.0" right="25.0" />
+            </padding>
+            <Label text="Appointment ID" />
+            <Label fx:id="idLabel" text="0" visible="false" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="200.0" spacing="25.0">
+            <padding>
+                <Insets left="25.0" right="25.0" />
+            </padding>
+            <Label text="Title" />
+            <TextField fx:id="titleTf" promptText="Appointment Title" />
+            <Label text="Description" />
+            <TextField fx:id="descriptionTf" promptText="Enter a description" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" spacing="20.0">
+            <padding>
+                <Insets left="25.0" right="25.0"/>
+            </padding>
+            <Label text="Location"/>
+            <TextField fx:id="locationTf" promptText="Appointment Location"/>
+            <Label text="Type"/>
+            <TextField fx:id="typeTf" promptText="Appointment Type"/>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="120.0" prefHeight="45.0" prefWidth="200.0" spacing="25.0">
+            <padding>
+                <Insets left="25.0" right="25.0" />
+            </padding>
+            <Label text="Contact" />
+            <ComboBox fx:id="contactCb" prefWidth="150.0" promptText="Select a Contact" />
+            <Label text="Customer" />
+            <ComboBox fx:id="customerCb" prefWidth="150.0" promptText="Select a Customer" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="150.0" prefHeight="45.0" prefWidth="200.0" spacing="25.0">
+            <padding>
+                <Insets left="25.0" right="25.0" />
+            </padding>
+         <Label text="Date" />
+         <DatePicker fx:id="datePicker" promptText="Select a day" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="180.0" prefHeight="45.0" prefWidth="200.0" spacing="25.0">
+            <padding>
+                <Insets left="25.0" right="25.0" />
+            </padding>
+            <Label text="Start Time" />
+            <ComboBox fx:id="startCb" prefWidth="150.0" promptText="Select a Start Time" />
+            <Label text=" End Time" />
+            <ComboBox fx:id="endCb" prefWidth="150.0" promptText="Select an End Time" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="285.0" prefHeight="45.0" prefWidth="200.0" spacing="25.0">
+            <padding>
+                <Insets left="25.0" right="25.0"/>
+            </padding>
+            <Label text="User"/>
+            <ComboBox fx:id="userCb" prefWidth="150.0" promptText="Select a User"/>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="200.0">
+            <Label fx:id="systemLabel" text="System Message" />
+        </HBox>
+        <HBox alignment="BOTTOM_RIGHT" prefHeight="45.0" prefWidth="200.0" spacing="20.0">
+            <padding>
+                <Insets right="20.0" />
+            </padding>
+            <Button mnemonicParsing="false" onAction="#saveButtonClicked" text="Save" />
+            <Button mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
+        </HBox>
+    </VBox>
+</AnchorPane>
